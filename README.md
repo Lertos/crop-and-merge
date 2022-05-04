@@ -14,3 +14,8 @@ Open up your command line and type:
 
 (where **[path]** is a proper OS path of the folder of images to merge)
 
+## Example
+
+In this example, I only want the first two sprites in each spritesheet, and I want them stacked vertically. I could opt to have multiple columns, or the first three sprites of each sheet, etc. These are all configurable in the "variables" section.
+
+![An example](example.png)
