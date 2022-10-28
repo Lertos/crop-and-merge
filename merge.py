@@ -1,7 +1,18 @@
 import os, sys, math
+import re
 from os import listdir
 from os.path import isfile, join
 from PIL import Image
+
+#!==========
+# Helper Methods
+#!==========
+
+#Need this as Python has no "natural" way to sort; it sorts like 0, 1, 10, 2, 20, etc
+def sorted_alphanumeric(data):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    return sorted(data, key=alphanum_key)
 
 
 #!==========
@@ -10,12 +21,12 @@ from PIL import Image
 
 folderPath = sys.argv[1]
 finalFileName = join(folderPath, '_merged.png')
-imageFiles = [join(folderPath, f) for f in listdir(folderPath) if isfile(join(folderPath, f))]
+imageFiles = [join(folderPath, f) for f in sorted_alphanumeric(listdir(folderPath)) if isfile(join(folderPath, f))]
 
-spriteWidth = 16
-spriteHeight = 16
-columnsToKeep = 2
-spriteGroupsOnEachRow = 8
+spriteWidth = 32
+spriteHeight = 32
+columnsToKeep = 1
+spriteGroupsOnEachRow = 10
 
 currentColumn = 0
 currentRow = 0
